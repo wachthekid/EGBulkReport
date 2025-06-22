@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Nodes>
+  <TrreeViewNode Text="Reports" NavigateUrl="#">
+    <TreeViewNode Text="Report1" NavigateUrl="/Reports/Report1/" />
+    <TreeViewNode Text="Data Table" NavigateUrl="/Reports/DataTable/" />
+  </TrreeViewNode>
+</Nodes>

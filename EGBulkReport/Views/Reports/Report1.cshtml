@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Report1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    EGBulkReport.Reports.Report1 report1 = new EGBulkReport.Reports.Report1();
+    //Oracle.ManagedDataAccess.Client.OracleConnection conn = ViewBag.DataSource;
+
+    report1.DataSource = ViewBag.DataSource;
+
+}
+
+@section LeftPanelContent {
+    @Html.Partial("LeftPanelPartial")
+}
+
+
+@Html.DevExpress().WebDocumentViewer(settings =>
+{
+    settings.Name = "WebDocumentViewer";
+}).Bind(new DevExpress.XtraReports.Web.CachedReportSourceWeb(report1)).GetHtml()
+
+@{ 
+    var total = DateTime.UtcNow.Subtract((DateTime)ViewBag.StartTime).TotalSeconds;
+    Response.Write("Total time is " + total.ToString("#,##0") + ".");
+}

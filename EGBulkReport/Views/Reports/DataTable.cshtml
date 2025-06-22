@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "DataTable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section LeftPanelContent {
+    @Html.Partial("LeftPanelPartial")
+}
+
+<table id="dumpdata" class="display">
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#dumpdata').DataTable({
+            dom: '<"top"Bf>rt<"bottom"ilp><"clear">',
+            "proccessing": true,
+            "serverSide": true,
+            ajax: {
+                type:'POST',
+                url: 'https://localhost:44387/api/Employee'
+            },
+            columns: [{ title: "ID", data: "ID" }, { title: "Name", data: "Name" }, { title: "Salary", data: "Salary", render: $.fn.dataTable.render.number(',', '.', 0, '') }],
+            pageLength: 50,
+            lengthMenu: [10, 25, 50, 100, 1000, -1],
+            layout: {
+                topStart: {
+                    buttons: [
+                        {
+                            extend: 'copyHtml5',
+                            text: '<i class="fa fa-files-o"></i>',
+                            titleAttr: 'Copy'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: '<i class="fa fa-file-excel-o"></i>',
+                            titleAttr: 'Excel'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: '<i class="fa fa-file-text-o"></i>',
+                            titleAttr: 'CSV'
+                        },
+                        {
+                            extend: 'pdfHtml5',
+                            text: '<i class="fa fa-file-pdf-o"></i>',
+                            titleAttr: 'PDF'
+                        }
+                    ]
+                }
+            }
+
+        });
+    });
+</script>

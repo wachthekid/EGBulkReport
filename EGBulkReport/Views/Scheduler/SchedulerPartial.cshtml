@@ -1,0 +1,9 @@
+﻿@model EGBulkReport.Model.SchedulerDataSource
+
+@{
+    var scheduler = Html.DevExpress().Scheduler(EGBulkReport.Model.SchedulerHelper.Settings);
+    if(ViewBag.GeneralError != null) {
+        scheduler.SetErrorText(ViewBag.GeneralError);
+    }
+}
+@scheduler.Bind(Model.Appointments, Model.Resources).GetHtml()
